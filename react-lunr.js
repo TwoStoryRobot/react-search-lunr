@@ -5,3 +5,5 @@ class ReactLunr extends React.Component {
     return <div>Do Something</div>
   }
 }
+
+export default ReactLunr

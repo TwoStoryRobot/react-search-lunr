@@ -3,4 +3,4 @@ import { storiesOf } from '@storybook/react'
 
 import ReactLunr from './react-lunr'
 
-storiesOf('ReactLunr', module).add('default', () => <div>Do something</div>)
+storiesOf('ReactLunr', module).add('default', () => <ReactLunr />)
