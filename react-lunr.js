@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import lunr from 'lunr'
-import moonwalkers from './moonwalkers'
 
 class ReactLunr extends React.Component {
   constructor(props) {
@@ -11,18 +11,20 @@ class ReactLunr extends React.Component {
       this.field('name')
       this.field('body')
       this.ref('id')
-      moonwalkers.forEach(walker => this.add(walker))
+      props.moonwalkers.forEach(walker => this.add(walker))
     })
     this.state = { filter: '', index, results: [] }
   }
 
   handleChange = event => {
     const filter = event.target.value
-    const results = this.state.index.search(filter).map(({ ref, ...rest }) => ({
-      ref,
-      item: moonwalkers.find(m => m.id === ref),
-      ...rest
-    }))
+    const results = this.state.index
+      .search(filter) // search the index
+      .map(({ ref, ...rest }) => ({
+        ref,
+        item: this.props.moonwalkers.find(m => m.id === ref),
+        ...rest
+      })) // attach each item
     this.setState({ results, filter })
   }
 
@@ -41,6 +43,10 @@ class ReactLunr extends React.Component {
       </div>
     )
   }
+}
+
+ReactLunr.propTypes = {
+  moonwalkers: PropTypes.array
 }
 
 export default ReactLunr
