@@ -11,25 +11,34 @@ class ReactLunr extends React.Component {
       props.fields.forEach(field => this.field(field))
       props.documents.forEach(doc => this.add(doc))
     })
-    this.state = { filter: '', index, results: [] }
+    this.state = { filter: '', index, results: [], documents: props.documents }
   }
 
-  getResults(filter) {
-    if (!filter) return []
-    const results = this.state.index
-      .search(filter) // search the index
-      .map(({ ref, ...rest }) => ({
-        ref,
-        item: this.props.documents.find(m => m.id === ref),
-        ...rest
-      })) // attach each item
-    return results
+  static getDerivedStateFromProps(props, state) {
+    if (state.prevFilter !== props.filter) {
+      try {
+        const results = state.index
+          .search(props.filter)
+          .map(({ ref, ...rest }) => ({
+            ref,
+            item: state.documents.find(m => m.id === ref),
+            ...rest
+          }))
+
+        return { results, prevFilter: props.filter }
+      } catch (e) {
+        if (!(e instanceof lunr.QueryParseError)) throw e
+        // swallow it
+      }
+    }
+    return null
   }
 
   render() {
-    const results = this.getResults(this.props.filter)
     return (
-      <div>{results.map((result, i) => this.props.children(result, i))}</div>
+      <div>
+        {this.state.results.map((result, i) => this.props.children(result, i))}
+      </div>
     )
   }
 }
