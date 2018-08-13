@@ -14,8 +14,8 @@ class ReactLunr extends React.Component {
     this.state = { filter: '', index, results: [] }
   }
 
-  handleChange = event => {
-    const filter = event.target.value
+  getResults(filter) {
+    if (!filter) return []
     const results = this.state.index
       .search(filter) // search the index
       .map(({ ref, ...rest }) => ({
@@ -23,16 +23,13 @@ class ReactLunr extends React.Component {
         item: this.props.documents.find(m => m.id === ref),
         ...rest
       })) // attach each item
-    this.setState({ results, filter })
+    return results
   }
 
   render() {
-    const { results } = this.state
+    const results = this.getResults(this.props.filter)
     return (
-      <div>
-        <input onChange={this.handleChange} value={this.state.filter} />
-        {results.map((result, i) => this.props.children(result, i))}
-      </div>
+      <div>{results.map((result, i) => this.props.children(result, i))}</div>
     )
   }
 }
@@ -41,6 +38,7 @@ ReactLunr.propTypes = {
   documents: PropTypes.array,
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filter: PropTypes.string,
   children: PropTypes.func
 }
 
