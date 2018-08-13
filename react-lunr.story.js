@@ -31,13 +31,16 @@ storiesOf('ReactLunr', module)
         id="id"
         fields={['name', 'body']}
         documents={moonwalkers}>
-        {(result, i) => (
-          <div key={i}>
-            <p>
-              <strong>{result.item.name}</strong> - {result.item.body}
-            </p>
-          </div>
-        )}
+        {results => {
+          console.log(results)
+          return results.map(result => (
+            <div key={result.ref}>
+              <p>
+                <strong>{result.item.name}</strong> - {result.item.body}
+              </p>
+            </div>
+          ))
+        }}
       </ReactLunr>
     ]
   })

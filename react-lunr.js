@@ -11,7 +11,7 @@ class ReactLunr extends React.Component {
       props.fields.forEach(field => this.field(field))
       props.documents.forEach(doc => this.add(doc))
     })
-    this.state = { filter: '', index, results: [], documents: props.documents }
+    this.state = { index, documents: props.documents }
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -35,11 +35,7 @@ class ReactLunr extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.state.results.map((result, i) => this.props.children(result, i))}
-      </div>
-    )
+    return this.props.children(this.state.results)
   }
 }
 
