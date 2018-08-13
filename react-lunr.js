@@ -7,10 +7,9 @@ class ReactLunr extends React.Component {
   constructor(props) {
     super(props)
     const index = lunr(function() {
-      this.field('name')
-      this.field('body')
-      this.ref('id')
-      props.moonwalkers.forEach(walker => this.add(walker))
+      this.ref(props.id)
+      props.fields.forEach(field => this.field(field))
+      props.documents.forEach(doc => this.add(doc))
     })
     this.state = { filter: '', index, results: [] }
   }
@@ -21,7 +20,7 @@ class ReactLunr extends React.Component {
       .search(filter) // search the index
       .map(({ ref, ...rest }) => ({
         ref,
-        item: this.props.moonwalkers.find(m => m.id === ref),
+        item: this.props.documents.find(m => m.id === ref),
         ...rest
       })) // attach each item
     this.setState({ results, filter })
@@ -44,7 +43,9 @@ class ReactLunr extends React.Component {
 }
 
 ReactLunr.propTypes = {
-  moonwalkers: PropTypes.array
+  documents: PropTypes.array,
+  id: PropTypes.string.isRequired,
+  fields: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default ReactLunr
