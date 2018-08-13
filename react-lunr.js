@@ -6,7 +6,6 @@ import lunr from 'lunr'
 class ReactLunr extends React.Component {
   constructor(props) {
     super(props)
-    console.log({ props, moonwalkers })
     const index = lunr(function() {
       this.field('name')
       this.field('body')
@@ -30,7 +29,6 @@ class ReactLunr extends React.Component {
 
   render() {
     const { results } = this.state
-    console.log({ results })
     return (
       <div>
         <input onChange={this.handleChange} value={this.state.filter} />
