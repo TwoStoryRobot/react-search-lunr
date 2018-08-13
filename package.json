@@ -9,6 +9,7 @@
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
+    "@sambego/storybook-state": "^1.2.0",
     "@storybook/react": "^3.4.10",
     "@twostoryrobot/eslint-config": "^2.2.0",
     "@twostoryrobot/prettier-config": "^2.0.1",
