@@ -31,12 +31,7 @@ class ReactLunr extends React.Component {
     return (
       <div>
         <input onChange={this.handleChange} value={this.state.filter} />
-        {results.map((result, i) => (
-          <div key={i}>
-            <h1>{result.item.name}</h1>
-            <p>{result.item.body}</p>
-          </div>
-        ))}
+        {results.map((result, i) => this.props.children(result, i))}
       </div>
     )
   }
@@ -45,7 +40,8 @@ class ReactLunr extends React.Component {
 ReactLunr.propTypes = {
   documents: PropTypes.array,
   id: PropTypes.string.isRequired,
-  fields: PropTypes.arrayOf(PropTypes.string).isRequired
+  fields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  children: PropTypes.func
 }
 
 export default ReactLunr
