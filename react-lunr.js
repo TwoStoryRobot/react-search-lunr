@@ -25,16 +25,18 @@ class ReactLunr extends React.Component {
             ...rest
           }))
 
-        return { results, prevFilter: props.filter }
+        return { results, prevFilter: props.filter, error: null }
       } catch (e) {
         if (!(e instanceof lunr.QueryParseError)) throw e
-        // swallow it
+        return { error: e }
       }
     }
     return null
   }
 
   render() {
+    if (this.props.onErrorChange) this.props.onErrorChange(this.state.error)
+
     return this.props.children(this.state.results)
   }
 }
@@ -44,7 +46,8 @@ ReactLunr.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.string).isRequired,
   filter: PropTypes.string,
-  children: PropTypes.func
+  children: PropTypes.func,
+  onErrorChange: PropTypes.func
 }
 
 export default ReactLunr
