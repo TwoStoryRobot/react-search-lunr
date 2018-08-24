@@ -29,5 +29,5 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "author": "Jonathan Bowers <jonotron@gmail.com>",
-  "license": "ISC"
+  "license": "MIT"
 }
