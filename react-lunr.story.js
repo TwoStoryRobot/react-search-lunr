@@ -1,64 +1,63 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { storiesOf } from '@storybook/react'
-import { State, Store, StateDecorator } from '@sambego/storybook-state'
+import { create } from 'reworm'
 
 import ReactLunr from './react-lunr'
 import moonwalkers from './moonwalkers'
 
-const store = new Store({
-  filter: ''
-})
-const errorStore = new Store({
-  error: null
-})
+const { get, set } = create({ filter: '' })
 
-function Input({ filter, ...rest }) {
-  return <input value={filter} {...rest} />
-}
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null }
 
-Input.propTypes = {
-  filter: PropTypes.string
-}
+  componentDidCatch(error) {
+    this.setState({ hasError: true, error: error })
+  }
 
-function Error({ error }) {
-  const message = error ? error.message : null
-  return <div>{message}</div>
-}
-
-Error.propTypes = {
-  error: PropTypes.instanceOf(Error)
-}
-
-storiesOf('ReactLunr', module)
-  .addDecorator(StateDecorator(store))
-  .add('default', () => {
-    const handleChange = e => {
-      store.set({ filter: e.target.value })
+  render() {
+    if (this.state.hasError) {
+      return (
+        <p>
+          {this.state.error.name} - {this.state.error.message}
+        </p>
+      )
     }
-    const onError = e => {
-      errorStore.set({ error: e })
-    }
-    return [
-      <Input key="input" onChange={handleChange} />,
-      <State key="error" store={errorStore}>
-        <Error />
-      </State>,
-      <ReactLunr
-        key="lunr"
-        id="id"
-        fields={['name', 'body']}
-        onErrorChange={onError}
-        documents={moonwalkers}>
-        {results => {
-          return results.map(result => (
-            <div key={result.ref}>
-              <p>
-                <strong>{result.item.name}</strong> - {result.item.body}
-              </p>
-            </div>
-          ))
-        }}
-      </ReactLunr>
-    ]
-  })
+
+    return this.props.children
+  }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.func
+}
+
+storiesOf('ReactLunr', module).add('default', () =>
+  get(s => (
+    <div>
+      <input
+        key="input"
+        onChange={e => set({ filter: e.target.value })}
+        value={s.filter}
+      />
+      <ErrorBoundary key={s.filter}>
+        <ReactLunr
+          key="lunr"
+          id="id"
+          fields={['name', 'body']}
+          filter={s.filter}
+          documents={moonwalkers}>
+          {results => {
+            return results.map(result => (
+              <div key={result.ref}>
+                <p>
+                  <strong>{result.item.name}</strong> - {result.item.body}
+                </p>
+              </div>
+            ))
+          }}
+        </ReactLunr>
+      </ErrorBoundary>
+    </div>
+  ))
+)

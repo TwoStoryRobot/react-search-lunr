@@ -14,40 +14,42 @@ class ReactLunr extends React.Component {
     this.state = { index, documents: props.documents }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.prevFilter !== props.filter) {
-      try {
-        const results = state.index
-          .search(props.filter)
-          .map(({ ref, ...rest }) => ({
-            ref,
-            item: state.documents.find(m => m.id === ref),
-            ...rest
-          }))
+  handleChange = event => {
+    const filter = event.target.value
+    const results = this.state.index
+      .search(filter) // search the index
+      .map(({ ref, ...rest }) => ({
+        ref,
+        item: this.state.documents.find(m => m.id === ref),
+        ...rest
+      })) // attach each item
+    this.setState({ results, filter })
+  }
 
-        return { results, prevFilter: props.filter, error: null }
-      } catch (e) {
-        if (!(e instanceof lunr.QueryParseError)) throw e
-        return { error: e }
-      }
-    }
-    return null
+  getResults(filter) {
+    if (!filter) return []
+    const results = this.state.index
+      .search(filter) // search the index
+      .map(({ ref, ...rest }) => ({
+        ref,
+        item: this.state.documents.find(m => m.id === ref),
+        ...rest
+      })) // attach each item
+    return results
   }
 
   render() {
-    if (this.props.onErrorChange) this.props.onErrorChange(this.state.error)
-
-    return this.props.children(this.state.results)
+    const results = this.getResults(this.props.filter)
+    return this.props.children(results)
   }
 }
 
 ReactLunr.propTypes = {
-  documents: PropTypes.array,
-  id: PropTypes.string.isRequired,
-  fields: PropTypes.arrayOf(PropTypes.string).isRequired,
+  fields: PropTypes.arrayOf(PropTypes.string),
+  id: PropTypes.string,
+  documents: PropTypes.arrayOf(PropTypes.object),
   filter: PropTypes.string,
-  children: PropTypes.func,
-  onErrorChange: PropTypes.func
+  children: PropTypes.func
 }
 
 export default ReactLunr
