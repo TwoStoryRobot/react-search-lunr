@@ -42,3 +42,11 @@ you should wrap `ReactLunr` in an [error
 boundary](https://reactjs.org/docs/error-boundaries.html) component. This is 
 particularly helpful if you are piping user input into the `filter` prop.
 
+## Todo
+
+This isn't quite finished. Some of the planned changes:
+
+* passing a compiled Lunr index
+* allow updating of `documents` after component construction
+* probably some performance tweaks
+
