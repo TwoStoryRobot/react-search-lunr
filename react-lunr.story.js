@@ -32,30 +32,24 @@ ErrorBoundary.propTypes = {
   children: PropTypes.func
 }
 
-storiesOf('ReactLunr', module).add('default', () =>
+const renderResults = results =>
+  results.map(result => (
+    <p key={result.ref}>
+      <strong>{result.item.name}</strong> - {result.item.body}
+    </p>
+  ))
+
+storiesOf('ReactLunr', module).add('interactive', () =>
   get(s => (
     <div>
-      <input
-        key="input"
-        onChange={e => set({ filter: e.target.value })}
-        value={s.filter}
-      />
+      <input onChange={e => set({ filter: e.target.value })} value={s.filter} />
       <ErrorBoundary key={s.filter}>
         <ReactLunr
-          key="lunr"
           id="id"
           fields={['name', 'body']}
           filter={s.filter}
           documents={moonwalkers}>
-          {results => {
-            return results.map(result => (
-              <div key={result.ref}>
-                <p>
-                  <strong>{result.item.name}</strong> - {result.item.body}
-                </p>
-              </div>
-            ))
-          }}
+          {renderResults}
         </ReactLunr>
       </ErrorBoundary>
     </div>
