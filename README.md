@@ -15,8 +15,8 @@ Import `ReactLunr` where you would like to use it.
 import ReactLunr from 'react-lunr'
 ```
 
-Supply some `documents`, specify the `id` (`ref` in Lunr), some `fields`, and a
-`filter` to search by. Then just supply a `children` render function which will
+Supply some `documents`, specify the `id` (`ref` in Lunr), some `fields`, and a 
+`filter` to search by. Then just supply a `children` render function which will 
 receive `results`.
 
 
@@ -34,4 +34,11 @@ receive `results`.
   ))}
 </ReactLunr>
 ```
+
+## Errors
+
+`ReactLunr` does not catch errors that Lunr throws (e.g. `QueryParseError`), so 
+you should wrap `ReactLunr` in an [error 
+boundary](https://reactjs.org/docs/error-boundaries.html) component. This is 
+particularly helpful if you are piping user input into the `filter` prop.
 
