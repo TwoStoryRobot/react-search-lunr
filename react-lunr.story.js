@@ -39,19 +39,35 @@ const renderResults = results =>
     </p>
   ))
 
-storiesOf('ReactLunr', module).add('interactive', () =>
-  get(s => (
+storiesOf('ReactLunr', module)
+  .add('interactive', () =>
+    get(s => (
+      <div>
+        <input
+          onChange={e => set({ filter: e.target.value })}
+          value={s.filter}
+        />
+        <ErrorBoundary key={s.filter}>
+          <ReactLunr
+            id="id"
+            fields={['name', 'body']}
+            filter={s.filter}
+            documents={moonwalkers}>
+            {renderResults}
+          </ReactLunr>
+        </ErrorBoundary>
+      </div>
+    ))
+  )
+  .add('initial filter', () => (
     <div>
-      <input onChange={e => set({ filter: e.target.value })} value={s.filter} />
-      <ErrorBoundary key={s.filter}>
-        <ReactLunr
-          id="id"
-          fields={['name', 'body']}
-          filter={s.filter}
-          documents={moonwalkers}>
-          {renderResults}
-        </ReactLunr>
-      </ErrorBoundary>
+      Initial Filter: alan
+      <ReactLunr
+        id="id"
+        fields={['name', 'body']}
+        filter="alan"
+        documents={moonwalkers}>
+        {renderResults}
+      </ReactLunr>
     </div>
   ))
-)
