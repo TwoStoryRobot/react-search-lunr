@@ -14,18 +14,6 @@ class ReactLunr extends React.Component {
     this.state = { index, documents: props.documents }
   }
 
-  handleChange = event => {
-    const filter = event.target.value
-    const results = this.state.index
-      .search(filter) // search the index
-      .map(({ ref, ...rest }) => ({
-        ref,
-        item: this.state.documents.find(m => m.id === ref),
-        ...rest
-      })) // attach each item
-    this.setState({ results, filter })
-  }
-
   getResults(filter) {
     if (!filter) return []
     const results = this.state.index
