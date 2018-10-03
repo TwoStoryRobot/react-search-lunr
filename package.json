@@ -2,13 +2,18 @@
   "name": "react-lunr",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/react-lunr.js",
   "dependencies": {
     "lunr": "^2.3.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
     "@storybook/react": "^3.4.10",
     "@twostoryrobot/eslint-config": "^2.2.0",
     "@twostoryrobot/prettier-config": "^2.0.1",
@@ -22,9 +27,10 @@
     "reworm": "^1.0.4"
   },
   "scripts": {
-    "eslint": "eslint '**/*.js'",
-    "precommit": "npm run eslint && prettier --list-different '**/*.js'",
-    "prettier": "prettier --write '**/*.js'",
+    "build": "babel react-lunr.js --out-dir dist",
+    "eslint": "eslint --ignore-path .gitignore '**/*.js'",
+    "precommit": "npm run eslint && prettier --ignore-path .gitignore --list-different '**/*.js'",
+    "prettier": "prettier --ignore-path .gitignore --write '**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
