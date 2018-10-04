@@ -54,3 +54,45 @@ test('should only index specified fields', async () => {
   expect(queryByText('test a')).not.toBeInTheDocument()
   expect(queryByText('ignore c')).not.toBeInTheDocument()
 })
+
+test('updating filter will rerender with new results', async () => {
+  const { queryByText, rerender } = render(
+    <ReactLunr
+      id="id"
+      documents={documents}
+      fields={['name', 'body']}
+      filter="test">
+      {results =>
+        results.map(result => (
+          <div key={result.ref}>
+            <h1>{result.item.name}</h1>
+            <p>{result.item.body}</p>
+          </div>
+        ))
+      }
+    </ReactLunr>
+  )
+
+  expect(queryByText('test a')).toBeInTheDocument()
+  expect(queryByText('ignore c')).not.toBeInTheDocument()
+
+  rerender(
+    <ReactLunr
+      id="id"
+      documents={documents}
+      fields={['name', 'body']}
+      filter="ignore">
+      {results =>
+        results.map(result => (
+          <div key={result.ref}>
+            <h1>{result.item.name}</h1>
+            <p>{result.item.body}</p>
+          </div>
+        ))
+      }
+    </ReactLunr>
+  )
+
+  expect(queryByText('test a')).not.toBeInTheDocument()
+  expect(queryByText('ignore c')).toBeInTheDocument()
+})
