@@ -6,13 +6,13 @@ import ReactLunr from './react-lunr'
 
 afterEach(cleanup)
 
-test('should call children render prop with results on initial filter', async () => {
+test('should render only results matching initial filter', async () => {
   const documents = [
     { id: 'a', name: 'test a', body: 'test a was found' },
     { id: 'b', name: 'test b', body: 'test b was unknown' },
     { id: 'c', name: 'ignore c', body: 'ignore this result' }
   ]
-  const { queryByText } = render(
+  const { container, queryByText } = render(
     <ReactLunr
       id="id"
       documents={documents}
@@ -32,4 +32,6 @@ test('should call children render prop with results on initial filter', async ()
   expect(queryByText('test a')).toBeInTheDocument()
   expect(queryByText('test b')).toBeInTheDocument()
   expect(queryByText('ignore c')).not.toBeInTheDocument()
+
+  expect(container.firstChild).toMatchSnapshot()
 })
