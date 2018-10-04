@@ -63,6 +63,7 @@ test('updating filter will rerender with new results', async () => {
   expect(queryByText('test a')).toBeInTheDocument()
   expect(queryByText('ignore c')).not.toBeInTheDocument()
 
+  // change the filter to ignore, rerender
   rerender(
     <ReactLunr
       id="id"
