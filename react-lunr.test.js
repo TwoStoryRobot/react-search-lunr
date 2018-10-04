@@ -12,6 +12,14 @@ const documents = [
   { id: 'c', name: 'ignore c', body: 'ignore this result' }
 ]
 
+const mapResults = results =>
+  results.map(result => (
+    <div key={result.ref}>
+      <h1>{result.item.name}</h1>
+      <p>{result.item.body}</p>
+    </div>
+  ))
+
 test('should render only results matching initial filter', async () => {
   const { container, queryByText } = render(
     <ReactLunr
@@ -19,14 +27,7 @@ test('should render only results matching initial filter', async () => {
       documents={documents}
       fields={['name', 'body']}
       filter="test">
-      {results =>
-        results.map(result => (
-          <div key={result.ref}>
-            <h1>{result.item.name}</h1>
-            <p>{result.item.body}</p>
-          </div>
-        ))
-      }
+      {mapResults}
     </ReactLunr>
   )
 
@@ -40,14 +41,7 @@ test('should render only results matching initial filter', async () => {
 test('should only index specified fields', async () => {
   const { queryByText } = render(
     <ReactLunr id="id" documents={documents} fields={['name']} filter="result">
-      {results =>
-        results.map(result => (
-          <div key={result.ref}>
-            <h1>{result.item.name}</h1>
-            <p>{result.item.body}</p>
-          </div>
-        ))
-      }
+      {mapResults}
     </ReactLunr>
   )
 
@@ -62,14 +56,7 @@ test('updating filter will rerender with new results', async () => {
       documents={documents}
       fields={['name', 'body']}
       filter="test">
-      {results =>
-        results.map(result => (
-          <div key={result.ref}>
-            <h1>{result.item.name}</h1>
-            <p>{result.item.body}</p>
-          </div>
-        ))
-      }
+      {mapResults}
     </ReactLunr>
   )
 
@@ -82,14 +69,7 @@ test('updating filter will rerender with new results', async () => {
       documents={documents}
       fields={['name', 'body']}
       filter="ignore">
-      {results =>
-        results.map(result => (
-          <div key={result.ref}>
-            <h1>{result.item.name}</h1>
-            <p>{result.item.body}</p>
-          </div>
-        ))
-      }
+      {mapResults}
     </ReactLunr>
   )
 
