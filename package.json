@@ -37,8 +37,9 @@
   "scripts": {
     "build": "babel react-lunr.js --out-dir dist",
     "eslint": "eslint --ignore-path .gitignore '**/*.js'",
-    "precommit": "npm run eslint && prettier --ignore-path .gitignore --list-different '**/*.js'",
-    "prettier": "prettier --ignore-path .gitignore --write '**/*.js'",
+    "precommit": "npm run eslint && npm run prettier:check",
+    "prettier": "prettier --ignore-path .gitignore --write '**/*.+(js|json|md|mdx)'",
+    "prettier:check": "prettier --ignore-path .gitignore --list-different '**/*.+(js|json|md|mdx)'",
     "test": "jest",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
