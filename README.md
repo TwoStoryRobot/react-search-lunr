@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/twostoryrobot/react-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-lunr)
+
 # react-lunr
 
 A Lunr powered client side search react component.
