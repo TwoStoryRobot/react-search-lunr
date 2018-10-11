@@ -1,7 +1,20 @@
 {
   "name": "react-search-lunr",
   "version": "0.0.2",
-  "description": "",
+  "description": "Lunr, as a React component",
+  "keywords": [
+    "react",
+    "lunr",
+    "search"
+  ],
+  "homepage": "https://github.com/twostoryrobot/react-search-lunr",
+  "bugs": {
+    "url": "https://github.com/twostoryrobot/react-search-lunr/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twostoryrobot/react-search-lunr.git"
+  },
   "main": "dist/react-search-lunr.js",
   "dependencies": {},
   "devDependencies": {
