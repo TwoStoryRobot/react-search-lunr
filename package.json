@@ -1,6 +1,6 @@
 {
   "name": "react-search-lunr",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Lunr, as a React component",
   "keywords": [
     "react",
