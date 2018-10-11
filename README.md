@@ -1,11 +1,11 @@
-[![Build 
-Status](https://semaphoreci.com/api/v1/twostoryrobot/react-search-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-search-lunr)
-
 # react-search-lunr
 
 A Lunr powered client side search react component.
 
 **disclaimer**: This is still a bit of a work in progress. It has some limitations, so use at your discretion
+
+[![Build 
+Status](https://semaphoreci.com/api/v1/twostoryrobot/react-search-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-search-lunr)
 
 ## Installation and Usage
 
