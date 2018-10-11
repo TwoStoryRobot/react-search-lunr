@@ -1,6 +1,6 @@
 [![Build 
 Status](https://semaphoreci.com/api/v1/twostoryrobot/react-search-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-search-lunr)
-[![npm version](http://img.shields.io/npm/v/react-search-lunr.svg?style=flat)](https://npmjs.org/package/react-search-lunr "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/REPO.svg?style=flat)](https://npmjs.org/package/REPO "View this project on npm")
 
 # react-search-lunr
 
