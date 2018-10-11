@@ -1,6 +1,7 @@
-[![Build Status](https://semaphoreci.com/api/v1/twostoryrobot/react-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-lunr)
+[![Build 
+Status](https://semaphoreci.com/api/v1/twostoryrobot/react-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-lunr)
 
-# react-lunr
+# react-search-lunr
 
 A Lunr powered client side search react component.
 
@@ -8,12 +9,12 @@ A Lunr powered client side search react component.
 
 ## Installation and Usage
 
-    npm install react-lunr
+    npm install react-search-lunr
 
-Import `ReactLunr` where you would like to use it.
+Import `ReactSearchLunr` where you would like to use it.
 
 ```js
-import ReactLunr from 'react-lunr'
+import ReactSearchLunr from 'react-search-lunr'
 ```
 
 Supply some `documents`, specify the `id` (`ref` in Lunr), some `fields`, and a
@@ -21,7 +22,7 @@ Supply some `documents`, specify the `id` (`ref` in Lunr), some `fields`, and a
 receive `results`.
 
 ```jsx
-<ReactLunr
+<ReactSearchLunr
   id="id"
   fields=["name", "body"]
   documents=[
@@ -32,13 +33,13 @@ receive `results`.
     <h1>{result.item.name}</h1>
     <p>{result.item.body}</p>
   ))}
-</ReactLunr>
+</ReactSearchLunr>
 ```
 
 ## Errors
 
-`ReactLunr` does not catch errors that Lunr throws (e.g. `QueryParseError`), so
-you should wrap `ReactLunr` in an [error
+`ReactSearchLunr` does not catch errors that Lunr throws (e.g. `QueryParseError`), so
+you should wrap `ReactSearchLunr` in an [error
 boundary](https://reactjs.org/docs/error-boundaries.html) component. This is
 particularly helpful if you are piping user input into the `filter` prop.
 

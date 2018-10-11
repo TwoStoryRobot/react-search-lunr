@@ -1,8 +1,8 @@
 {
-  "name": "react-lunr",
+  "name": "react-search-lunr",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/react-lunr.js",
+  "main": "dist/react-search-lunr.js",
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -35,7 +35,7 @@
     "lunr": ">= 2.3"
   },
   "scripts": {
-    "build": "babel react-lunr.js --out-dir dist",
+    "build": "babel react-search-lunr.js --out-dir dist",
     "eslint": "eslint --ignore-path .gitignore '**/*.js'",
     "prettier": "prettier --ignore-path .gitignore --write '**/*.+(js|json|md|mdx)'",
     "prettier:check": "prettier --ignore-path .gitignore --list-different '**/*.+(js|json|md|mdx)'",

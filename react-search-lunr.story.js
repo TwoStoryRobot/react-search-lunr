@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { storiesOf } from '@storybook/react'
 import { create } from 'reworm'
 
-import ReactLunr from './react-lunr'
+import ReactSearchLunr from './react-search-lunr'
 import moonwalkers from './moonwalkers'
 
 const { get, set } = create({ filter: '' })
@@ -39,7 +39,7 @@ const renderResults = results =>
     </p>
   ))
 
-storiesOf('ReactLunr', module)
+storiesOf('ReactSearchLunr', module)
   .add('interactive', () =>
     get(s => (
       <div>
@@ -48,13 +48,13 @@ storiesOf('ReactLunr', module)
           value={s.filter}
         />
         <ErrorBoundary key={s.filter}>
-          <ReactLunr
+          <ReactSearchLunr
             id="id"
             fields={['name', 'body']}
             filter={s.filter}
             documents={moonwalkers}>
             {renderResults}
-          </ReactLunr>
+          </ReactSearchLunr>
         </ErrorBoundary>
       </div>
     ))
@@ -62,12 +62,12 @@ storiesOf('ReactLunr', module)
   .add('initial filter', () => (
     <div>
       Initial Filter: alan
-      <ReactLunr
+      <ReactSearchLunr
         id="id"
         fields={['name', 'body']}
         filter="alan"
         documents={moonwalkers}>
         {renderResults}
-      </ReactLunr>
+      </ReactSearchLunr>
     </div>
   ))

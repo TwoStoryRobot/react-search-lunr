@@ -2,7 +2,7 @@ import React from 'react'
 import { render, cleanup } from 'react-testing-library'
 import 'jest-dom/extend-expect'
 
-import ReactLunr from './react-lunr'
+import ReactSearchLunr from './react-search-lunr'
 
 afterEach(cleanup)
 
@@ -22,13 +22,13 @@ const mapResults = results =>
 
 test('should render only results matching initial filter', async () => {
   const { container, queryByText } = render(
-    <ReactLunr
+    <ReactSearchLunr
       id="id"
       documents={documents}
       fields={['name', 'body']}
       filter="test">
       {mapResults}
-    </ReactLunr>
+    </ReactSearchLunr>
   )
 
   expect(queryByText('test a')).toBeInTheDocument()
@@ -40,9 +40,13 @@ test('should render only results matching initial filter', async () => {
 
 test('should only index specified fields', async () => {
   const { queryByText } = render(
-    <ReactLunr id="id" documents={documents} fields={['name']} filter="result">
+    <ReactSearchLunr
+      id="id"
+      documents={documents}
+      fields={['name']}
+      filter="result">
       {mapResults}
-    </ReactLunr>
+    </ReactSearchLunr>
   )
 
   expect(queryByText('test a')).not.toBeInTheDocument()
@@ -51,13 +55,13 @@ test('should only index specified fields', async () => {
 
 test('updating filter will rerender with new results', async () => {
   const { queryByText, rerender } = render(
-    <ReactLunr
+    <ReactSearchLunr
       id="id"
       documents={documents}
       fields={['name', 'body']}
       filter="test">
       {mapResults}
-    </ReactLunr>
+    </ReactSearchLunr>
   )
 
   expect(queryByText('test a')).toBeInTheDocument()
@@ -65,13 +69,13 @@ test('updating filter will rerender with new results', async () => {
 
   // change the filter to ignore, rerender
   rerender(
-    <ReactLunr
+    <ReactSearchLunr
       id="id"
       documents={documents}
       fields={['name', 'body']}
       filter="ignore">
       {mapResults}
-    </ReactLunr>
+    </ReactSearchLunr>
   )
 
   expect(queryByText('test a')).not.toBeInTheDocument()
