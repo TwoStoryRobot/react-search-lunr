@@ -1,5 +1,5 @@
 [![Build 
-Status](https://semaphoreci.com/api/v1/twostoryrobot/react-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-lunr)
+Status](https://semaphoreci.com/api/v1/twostoryrobot/react-search-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-search-lunr)
 
 # react-search-lunr
 
