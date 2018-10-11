@@ -19,7 +19,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-jest": "^21.20.2",
     "eslint-plugin-react": "^7.10.0",
-    "husky": "^0.14.3",
+    "husky": "^1.1.2",
     "jest": "^23.6.0",
     "jest-dom": "^2.0.0",
     "lunr": "^2.3.3",
@@ -37,11 +37,15 @@
   "scripts": {
     "build": "babel react-lunr.js --out-dir dist",
     "eslint": "eslint --ignore-path .gitignore '**/*.js'",
-    "precommit": "npm run eslint && npm run prettier:check",
     "prettier": "prettier --ignore-path .gitignore --write '**/*.+(js|json|md|mdx)'",
     "prettier:check": "prettier --ignore-path .gitignore --list-different '**/*.+(js|json|md|mdx)'",
     "test": "jest",
     "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && npm run prettier:check"
+    }
   },
   "author": "Jonathan Bowers <jonotron@gmail.com>",
   "license": "MIT"
