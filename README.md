@@ -5,7 +5,7 @@ A Lunr powered client side search react component.
 **disclaimer**: This is still a bit of a work in progress. It has some limitations, so use at your discretion
 
 [![Build 
-Status](https://semaphoreci.com/api/v1/twostoryrobot/react-search-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-search-lunr)
+Status](https://semaphoreci.com/api/v1/twostoryrobot/react-search-lunr/branches/master/shields_badge.svg)](https://semaphoreci.com/twostoryrobot/react-search-lunr) [![npm version](https://img.shields.io/npm/v/react-search-lunr.svg)](https://www.npmjs.com/package/react-search-lunr)
 
 ## Installation and Usage
 
