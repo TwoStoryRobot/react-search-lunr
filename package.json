@@ -49,9 +49,9 @@
   },
   "scripts": {
     "build": "babel react-search-lunr.js --out-dir dist",
-    "eslint": "eslint --ignore-path .gitignore '**/*.js'",
-    "prettier": "prettier --ignore-path .gitignore --write '**/*.+(js|json|md|mdx)'",
-    "prettier:check": "prettier --ignore-path .gitignore --list-different '**/*.+(js|json|md|mdx)'",
+    "eslint": "eslint --ignore-path .gitignore \"**/*.js\"",
+    "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|md|mdx)\"",
+    "prettier:check": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json|md|mdx)\"",
     "test": "jest",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },

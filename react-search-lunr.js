@@ -20,7 +20,7 @@ class ReactLunr extends React.Component {
       .search(filter) // search the index
       .map(({ ref, ...rest }) => ({
         ref,
-        item: this.state.documents.find(m => m.id === ref),
+        item: this.state.documents.find(m => m.id == ref),
         ...rest
       })) // attach each item
     return results
