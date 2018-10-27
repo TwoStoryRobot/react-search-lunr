@@ -7,7 +7,7 @@ import ReactSearchLunr from './react-search-lunr'
 afterEach(cleanup)
 
 const documents = [
-  { id: 'a', name: 'test a', body: 'test a was found' },
+  { id: 1, name: 'test a', body: 'test a was found' },
   { id: 'b', name: 'test b', body: 'test b was unknown' },
   { id: 'c', name: 'ignore c', body: 'ignore this result' }
 ]
