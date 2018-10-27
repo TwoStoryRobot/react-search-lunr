@@ -16,7 +16,9 @@
     "url": "https://github.com/twostoryrobot/react-search-lunr.git"
   },
   "main": "dist/react-search-lunr.js",
-  "dependencies": {},
+  "dependencies": {
+    "gh-pages": "^2.0.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
@@ -53,6 +55,9 @@
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|md|mdx)\"",
     "prettier:check": "prettier --ignore-path .gitignore --list-different \"**/*.+(js|json|md|mdx)\"",
     "test": "jest",
+    "storybook-build": "build-storybook -c .storybook -o build",
+    "predeploy": "npm run storybook-build",
+    "deploy": "gh-pages -d build",
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "husky": {
