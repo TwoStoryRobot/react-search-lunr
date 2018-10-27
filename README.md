@@ -24,14 +24,16 @@ receive `results`.
 ```jsx
 <ReactSearchLunr
   id="id"
-  fields=["name", "body"]
-  documents=[
+  fields={["name", "body"]}
+  documents={[
     {name: 'aldrin', body:'followed neil armstrong to the moon'},
     {name: 'armstrong', body: 'first to land on the moon'}
-  ]>
+  ]}>
   {results => result.map(result => (
-    <h1>{result.item.name}</h1>
-    <p>{result.item.body}</p>
+    <div key={result.ref}>
+      <h1>{result.item.name}</h1>
+      <p>{result.item.body}</p>
+    </div>
   ))}
 </ReactSearchLunr>
 ```
