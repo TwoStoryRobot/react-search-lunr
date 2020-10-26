@@ -81,3 +81,21 @@ test('updating filter will rerender with new results', async () => {
   expect(queryByText('test a')).not.toBeInTheDocument()
   expect(queryByText('ignore c')).toBeInTheDocument()
 })
+
+test('should render results using a selected field as ID', async () => {
+  const { container, queryByText } = render(
+    <ReactSearchLunr
+      id="name"
+      documents={documents}
+      fields={['body']}
+      filter="test">
+      {mapResults}
+    </ReactSearchLunr>
+  )
+
+  expect(queryByText('test a')).toBeInTheDocument()
+  expect(queryByText('test b')).toBeInTheDocument()
+  expect(queryByText('ignore c')).not.toBeInTheDocument()
+
+  expect(container.firstChild).toMatchSnapshot()
+})
